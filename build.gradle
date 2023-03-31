@@ -1,0 +1,52 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.3'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.li9'
+version = '0.0.1-SNAPSHOT'
+
+apply plugin: 'io.spring.dependency-management'
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_15
+	targetCompatibility = JavaVersion.VERSION_15
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation group: 'org.camunda.bpm', name: 'camunda-bom', version: '7.18.0', ext: 'pom'
+	implementation group: 'org.camunda.bpm.springboot', name: 'camunda-bpm-spring-boot-starter-webapp', version: '7.18.0'
+	implementation group: 'org.camunda.bpm.springboot', name: 'camunda-bpm-spring-boot-starter-rest', version: '7.18.0'
+	implementation group: 'org.camunda.bpm', name: 'camunda-engine-plugin-spin', version: '7.18.0'
+	implementation group: 'org.camunda.spin', name: 'camunda-spin-dataformat-all', version: '1.19.0'
+
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation group: 'org.camunda.bpm.springboot', name: 'camunda-bpm-spring-boot-starter-test', version: '7.18.0'
+	testImplementation group: 'org.camunda.bpm.extension.mockito', name: 'camunda-bpm-mockito', version: '5.16.0'
+	testImplementation group: 'org.camunda.bpm.extension', name: 'camunda-bpm-assert-scenario', version: '1.1.1'
+	implementation group: 'org.camunda.bpm.extension', name: 'camunda-bpm-process-test-coverage', version: '0.4.0'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
