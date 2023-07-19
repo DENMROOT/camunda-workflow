@@ -34,6 +34,7 @@ dependencies {
 	implementation group: 'org.camunda.bpm.springboot', name: 'camunda-bpm-spring-boot-starter-rest', version: '7.18.0'
 	implementation group: 'org.camunda.bpm', name: 'camunda-engine-plugin-spin', version: '7.18.0'
 	implementation group: 'org.camunda.spin', name: 'camunda-spin-dataformat-all', version: '1.19.0'
+	implementation group: 'org.camunda.bpm.extension', name: 'camunda-bpm-process-test-coverage', version: '0.4.0'
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
@@ -44,7 +45,8 @@ dependencies {
 	testImplementation group: 'org.camunda.bpm.springboot', name: 'camunda-bpm-spring-boot-starter-test', version: '7.18.0'
 	testImplementation group: 'org.camunda.bpm.extension.mockito', name: 'camunda-bpm-mockito', version: '5.16.0'
 	testImplementation group: 'org.camunda.bpm.extension', name: 'camunda-bpm-assert-scenario', version: '1.1.1'
-	implementation group: 'org.camunda.bpm.extension', name: 'camunda-bpm-process-test-coverage', version: '0.4.0'
+
+	testImplementation group: 'com.h2database', name: 'h2', version: '2.2.220'
 }
 
 tasks.named('test') {
